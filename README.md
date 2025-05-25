@@ -1,4 +1,4 @@
-# evogym
+# chatty
 
 ![Screenshot Img](.frontend/public/screenshot_01.png)
 ![Screenshot Img](.frontend/public/screenshot_02.png)
