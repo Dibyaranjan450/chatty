@@ -30,6 +30,6 @@ https://chatty-frontend-yc65.onrender.com
 - Creator of evogym [@Dibyaranjan450](https://github.com/Dibyaranjan450)
 
 
-## ⚠️ Disclaimer
+## Disclaimer ⚠️
 
 **Compatibility Warning**: This project may not function properly in Safari due to it's strict cookie policy. Try using Chrome or Firefox instead!
