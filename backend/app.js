@@ -1,0 +1,18 @@
+import express from "express";
+import cookieParser from "cookie-parser";
+import cors from "cors";
+import { authRouter, messageRouter } from "./src/routes/index.js";
+import { errorController } from "./src/controllers/index.js";
+
+const app = express();
+
+app.use(express.json({ limit: "10mb" }));
+app.use(cookieParser());
+app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+
+app.use("/api/auth", authRouter);
+app.use("/api/messages", messageRouter);
+
+app.use(errorController);
+
+export default app;
