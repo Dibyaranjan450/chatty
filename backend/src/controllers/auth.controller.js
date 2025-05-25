@@ -60,7 +60,7 @@ export const login = async (req, res, next) => {
 
 export const logout = (req, res, next) => {
   try {
-    res.cookie("jwt", "", { maxAge: 0 });
+    res.cookie("jwt", "", { maxAge: 0, path: "/" });
 
     res.status(200).json({
       status: "success",
