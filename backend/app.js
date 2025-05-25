@@ -8,6 +8,7 @@ const app = express();
 
 app.use(express.json({ limit: "10mb" }));
 app.use(cookieParser());
+console.log("SOCKET_CORS_ORIGIN", process.env.SOCKET_CORS_ORIGIN);
 app.use(cors({ origin: process.env.SOCKET_CORS_ORIGIN, credentials: true }));
 
 app.use("/api/auth", authRouter);
