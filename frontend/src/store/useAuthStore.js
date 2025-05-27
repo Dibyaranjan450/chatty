@@ -33,7 +33,10 @@ export const useAuthStore = create((set, get) => ({
 
     try {
       const res = await axiosInstance.post("/auth/signup", data);
-      set({ authUser: res.data.data });
+      const { access_token, ...result } = res.data.data;
+
+      set({ authUser: result });
+      localStorage.setItem("access_token", access_token);
 
       toast.success("Account created successfully");
 
@@ -52,7 +55,10 @@ export const useAuthStore = create((set, get) => ({
     try {
       const res = await axiosInstance.post("/auth/login", data);
       // console.log(res.data.data);
-      set({ authUser: res.data.data });
+      const { access_token, ...result } = res.data.data;
+
+      set({ authUser: result });
+      localStorage.setItem("access_token", access_token);
 
       toast.success("User logged in successfully");
 
@@ -69,6 +75,7 @@ export const useAuthStore = create((set, get) => ({
     try {
       const res = await axiosInstance.post("/auth/logout");
       set({ authUser: null });
+      localStorage.removeItem("access_token");
       toast.success("Logged out sucessfully");
 
       get().disconnectSocket();

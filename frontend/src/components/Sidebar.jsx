@@ -15,8 +15,10 @@ const Sidebar = () => {
     : users;
 
   useEffect(() => {
-    getUsers();
-  }, [getUsers]);
+    const token = localStorage.getItem("access_token");
+
+    if (token) getUsers();
+  }, [getUsers, localStorage]);
 
   if (isUsersLoading) return <SidebarSkeleton />;
 

@@ -15,12 +15,12 @@ export const signup = async (req, res, next) => {
     const { password: _, __v: __, ...filteredUser } = newUser.toObject();
 
     if (newUser) {
-      generateToken(newUser._id, res);
+      const access_token = generateToken(newUser._id, res);
 
       return res.status(201).json({
         satus: "success",
         success: true,
-        data: filteredUser,
+        data: { ...filteredUser, access_token },
       });
     } else {
       return next(InternalServerError("Something went wrong!"));
@@ -44,13 +44,13 @@ export const login = async (req, res, next) => {
     const correctPassword = await bcrypt.compare(password, user.password);
     if (!correctPassword) return next(Unauthorized("Invalid credentials!"));
 
-    generateToken(user._id, res);
+    const access_token = generateToken(user._id, res);
 
     const { password: _, __v: __, ...filteredUser } = user.toObject();
     res.status(200).json({
       status: "success",
       success: true,
-      data: filteredUser,
+      data: { ...filteredUser, access_token },
     });
   } catch (error) {
     console.log("Error in login controller: ", error);
